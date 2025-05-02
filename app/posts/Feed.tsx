@@ -5,9 +5,7 @@ import AddPost from "./AddPost";
 import Header from "./Header";
 import Post from "./Post";
 
-export default function Feed({
-  posts,
-}: {
+type FeedProps = {
   posts: {
     id: string;
     content: string;
@@ -20,9 +18,11 @@ export default function Feed({
       createdAt: string;
       content: string;
     }[];
-    imageUrl?: string | undefined; // Assuming this field is optional
-  }[] | undefined;
-}) {
+    imageUrl?: string; // imageUrl is optional
+  }[] | undefined; // Allow posts to be null
+};
+
+export default function Feed({ posts }: FeedProps) {
   return (
     <main>
       <div className="container mx-auto px-6 sm:px-8 md:px-16 lg:px-20 max-w-3xl mt-6 items-center">
@@ -30,7 +30,7 @@ export default function Feed({
         <Header />
         <AddPost />
 
-        {Array.isArray(posts) ? (
+        {posts?.length ? (
           posts.map((post) => (
             <Post
               key={post.id}
@@ -41,7 +41,7 @@ export default function Feed({
               avatar={post.user.image}
               createdAt={post.createdAt}
               content={post.content}
-              imageUrl={post.imageUrl ?? null} // Pass imageUrl if it exists
+              imageUrl={post.imageUrl ?? undefined} // imageUrl can be null
               likes={post.likes}
               comments={post.comments}
             />
