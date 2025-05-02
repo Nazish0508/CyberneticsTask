@@ -1,7 +1,7 @@
 // pages/api/upload.ts
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-import formidable from 'formidable';
+//import formidable from 'formidable';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 
