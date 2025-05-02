@@ -20,7 +20,7 @@ export default function Feed({
       createdAt: string;
       content: string;
     }[];
-    imageUrl={post.imageUrl || undefined}  // If post.imageUrl is falsy, undefined will be passed 
+    imageUrl?: string | undefined; // Assuming this field is optional
   }[] | undefined;
 }) {
   return (
