@@ -5,4 +5,9 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = {
+  images: {
+    domains: ['your-bucket-name.s3.amazonaws.com'],
+  },
+};
+

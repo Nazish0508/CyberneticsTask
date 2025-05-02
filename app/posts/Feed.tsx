@@ -20,7 +20,8 @@ export default function Feed({
       createdAt: string;
       content: string;
     }[];
-  }[];
+    imageUrl?: string | null; // Assuming this field is optional
+  }[] | undefined;
 }) {
   return (
     <main>
@@ -29,20 +30,25 @@ export default function Feed({
         <Header />
         <AddPost />
 
-        {posts?.map((post) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            userId={post.user.id}
-            subscriptionStatus={post.user.subscriptionStatus}
-            name={post.user.name}
-            avatar={post.user.image}
-            createdAt={post.createdAt}
-            content={post.content}
-            likes={post.likes}
-            comments={post.comments}
-          />
-        ))}
+        {Array.isArray(posts) ? (
+          posts.map((post) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              userId={post.user.id}
+              subscriptionStatus={post.user.subscriptionStatus}
+              name={post.user.name}
+              avatar={post.user.image}
+              createdAt={post.createdAt}
+              content={post.content}
+              imageUrl={post.imageUrl ?? null} // Pass imageUrl if it exists
+              likes={post.likes}
+              comments={post.comments}
+            />
+          ))
+        ) : (
+          <p>No posts found.</p>
+        )}
       </div>
     </main>
   );

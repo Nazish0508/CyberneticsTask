@@ -6,9 +6,16 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const data = await prisma.post.findMany({
+    const posts = await prisma.post.findMany({
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true, // If user's profile image is needed
+          },
+        },
         likes: true,
         comments: true,
       },
@@ -16,8 +23,10 @@ export default async function handler(
         createdAt: "desc",
       },
     });
-    return res.status(200).json(data);
+
+    return res.status(200).json(posts);
   } catch (error) {
-    res.status(403).json({ err: "Error has occured while fetching posts" })
+    console.error("Error fetching posts:", error);
+    return res.status(500).json({ err: "Error occurred while fetching posts" });
   }
 }

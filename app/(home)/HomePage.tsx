@@ -318,42 +318,6 @@ export default function HomePage({ numStars }: { numStars: string }) {
 
         <Spacer y={1} />
 
-        <div className="flex flex-wrap space-x-4 justify-center">
-          <Button
-            className="font-medium bg-gradient-to-r from-pink-500 to-yellow-600 text-white shadow-lg"
-            onClick={() =>
-              window.open("https://github.com/yaseenmustapha/nextjs14-app")
-            }
-          >
-            Source Code on GitHub
-          </Button>
-
-          <Link href="https://github.com/yaseenmustapha/nextjs14-app">
-            <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-pink-500 pr-2">
-              {numStars} stars on GitHub
-            </p>
-          </Link>
-        </div>
-
-        <User
-          className="font-medium text-medium"
-          name="Yaseen Mustapha"
-          description={
-            <Link
-              className="text-small"
-              href="https://github.com/yaseenmustapha"
-            >
-              github.com/yaseenmustapha
-            </Link>
-          }
-          avatarProps={{
-            src: "https://avatars.githubusercontent.com/u/26501999",
-          }}
-          onClick={() => window.open("https://github.com/yaseenmustapha")}
-        />
-
-        <Spacer y={5} />
-
         <p className="text-3xl font-medium">Features</p>
       </div>
 
